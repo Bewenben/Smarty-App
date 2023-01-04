@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "656423837472",
+    "project_id": "iot-app-faaab",
+    "storage_bucket": "iot-app-faaab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656423837472:android:8d0102c21cf4d3e1c0c145",
+        "android_client_info": {
+          "package_name": "com.example.iotapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "656423837472-ekhb7tmbvh0sm10pivn1l7qls618gmap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMC4zFNuiEqV63yYRIU9H6FCIUyIIrWyk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "656423837472-ekhb7tmbvh0sm10pivn1l7qls618gmap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

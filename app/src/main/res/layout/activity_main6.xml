@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".AddURD">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="628dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="Add to your home"
+            android:textColor="@color/black"
+            android:textSize="60sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Hintname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="305dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:visibility="gone"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName2"
+                android:layout_width="305dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:hint="Room's name"
+                android:inputType="textPersonName"
+                android:padding="10dp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/SpinnerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="62dp">
+
+            <Spinner
+                android:id="@+id/spinner2"
+                style="@style/spinner_style"
+                android:layout_width="305dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.493" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="171dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/blue"
+            android:fontFamily="@font/montserrat"
+            android:text="Add" />
+    </LinearLayout>
+
+</LinearLayout>
