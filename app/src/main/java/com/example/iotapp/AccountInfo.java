@@ -25,11 +25,11 @@ public class AccountInfo extends AppCompatActivity {
     EditText useremail;
     EditText userfirst;
     EditText userlast;
-    EditText newpass;
-    Button changeemail;
+//    EditText newpass;
+//    Button changeemail;
     Button changefirst;
     Button changelast;
-    Button changepass;
+//    Button changepass;
     LinearLayout loading;
     FirebaseUser user;
     FirebaseFirestore db;
@@ -45,14 +45,14 @@ public class AccountInfo extends AppCompatActivity {
         user = auth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
         loading = findViewById(R.id.progress);
-        useremail = findViewById(R.id.editTextTextPersonName4);
+//        useremail = findViewById(R.id.editTextTextPersonName4);
         userfirst = findViewById(R.id.editTextTextPersonName5);
         userlast = findViewById(R.id.editTextTextPersonName6);
-        newpass = findViewById(R.id.editTextTextPersonName8);
-        changeemail = findViewById(R.id.button4);
+//        newpass = findViewById(R.id.editTextTextPersonName8);
+//        changeemail = findViewById(R.id.button4);
         changefirst = findViewById(R.id.button5);
         changelast = findViewById(R.id.button6);
-        changepass = findViewById(R.id.button7);
+//        changepass = findViewById(R.id.button7);
 
         db.collection("Users").whereEqualTo("email",user.getEmail())
                         .get().addOnCompleteListener(task -> {
@@ -81,7 +81,6 @@ public class AccountInfo extends AppCompatActivity {
                             userfirst.setHint(first);
                             userfirst.setText("");
                         });
-//                    Toast.makeText(AccountInfo.this,"Right Name", Toast.LENGTH_SHORT).show();
             } else {
                 userfirst.setError("Your first name cannot have any special characters or numbers.");
                 userfirst.requestFocus();
@@ -101,7 +100,6 @@ public class AccountInfo extends AppCompatActivity {
                             userlast.setText("");
                             loading.setVisibility(View.GONE);
                         });
-//                    Toast.makeText(AccountInfo.this,"Right Name", Toast.LENGTH_SHORT).show();
             } else {
                 userlast.setError("Your last name cannot have any special characters or numbers.");
                 userlast.requestFocus();
@@ -110,15 +108,15 @@ public class AccountInfo extends AppCompatActivity {
 
         // FIXME: Re-authentication doesn't work properly somehow
 
-        changepass.setOnClickListener(v -> {
-            loading.setVisibility(View.VISIBLE);
-            AuthCredential credential = EmailAuthProvider
-                    .getCredential(Objects.requireNonNull(user.getEmail()), newpass.getText().toString());
-            user.reauthenticate(credential)
-                    .addOnCompleteListener(task -> {
-
-                    });
-        });
+//        changepass.setOnClickListener(v -> {
+//            loading.setVisibility(View.VISIBLE);
+//            AuthCredential credential = EmailAuthProvider
+//                    .getCredential(Objects.requireNonNull(user.getEmail()), newpass.getText().toString());
+//            user.reauthenticate(credential)
+//                    .addOnCompleteListener(task -> {
+//
+//                    });
+//        });
 
     }
 }

@@ -44,8 +44,8 @@ public class Profilepage extends Fragment {
 //    private static final String ARG_PARAM1 = "param1";
 //    private static final String ARG_PARAM2 = "param2";
 
-    String[] setting = {"Manage your account","Edit home members' roles","Delete a device","Delete a room","Log out"};
-    String[] icons = {"user.apng","group.apng","bin.apng","bin.apng","logout.apng"};
+    String[] setting = {"Manage your account","Edit home members' roles","Log out"};
+    String[] icons = {"user.apng","group.apng","logout.apng"};
     String[] image = {"Upload a photo","Take a photo"};
     ImageView imageView;
     FirebaseStorage storage;

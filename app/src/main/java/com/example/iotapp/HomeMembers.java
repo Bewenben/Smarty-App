@@ -29,12 +29,12 @@ public class HomeMembers extends AppCompatActivity {
     ArrayList<String> id = new ArrayList<>();
     ArrayList<String> rolename = new ArrayList<>();
     ArrayList<String> username = new ArrayList<>();
-    ArrayList<String> profilepic = new ArrayList<>();
     MembersAdapter adapter;
     FirebaseStorage storage;
     StorageReference storageReference;
     LinearLayout loading;
     String name;
+    ArrayList<Object> fulluser = new ArrayList<>();
     ArrayList<String> emails = new ArrayList<>();
 
     @Override
@@ -46,7 +46,7 @@ public class HomeMembers extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         loading = findViewById(R.id.progress);
-        adapter = new MembersAdapter(username,rolename,profilepic, HomeMembers.this);
+        adapter = new MembersAdapter(fulluser, HomeMembers.this);
         db.collection("Users").whereEqualTo("email",user.getEmail())
                 .get()
                 .addOnCompleteListener(task -> {
@@ -65,9 +65,11 @@ public class HomeMembers extends AppCompatActivity {
                                             rolename.add(entry.getValue().toString());
                                         }
                                     }
+                                    if(roles.size()==id.size()){
+                                        getMembers();
+                                    }
                                 }
                         }
-                        getMembers();
                     } else {
                         Log.w("TAG", "Error getting documents.", task.getException());
                     }
@@ -86,7 +88,9 @@ public class HomeMembers extends AppCompatActivity {
                             name = document.getString("first") + " " + document.getString("last");
                             emails.add(document.getString("email"));
                             username.add(name);
-                            getProfileMembers();
+                            if(emails.size()==id.size()){
+                                getProfileMembers();
+                            }
                         }
                     });
         }
@@ -94,21 +98,21 @@ public class HomeMembers extends AppCompatActivity {
 
     void getProfileMembers(){
         for (int i = 0 ; i < emails.size(); i++){
-            Log.d("A7A",emails.get(i));
+            int finalI = i;
             try {
                 StorageReference gsReference = storage.getReferenceFromUrl("gs://iot-app-faaab.appspot.com/users/" + emails.get(i));
                 File localFile= File.createTempFile("images", "jpg");
                 gsReference.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
-                    profilepic.add(localFile.toString());
+                    fulluser.add(new Member(username.get(finalI), rolename.get(finalI),localFile.toString()));
+                    listView.setAdapter(adapter);
                     loading.setVisibility(View.GONE);
                     listView.setVisibility(View.VISIBLE);
-                    listView.setAdapter(adapter);
                 });
             } catch (Exception ignored){
-                profilepic.add("none");
+                fulluser.add(new Member(username.get(finalI), rolename.get(finalI),"none"));
+                listView.setAdapter(adapter);
                 loading.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
-                listView.setAdapter(adapter);
             }
         }
     }

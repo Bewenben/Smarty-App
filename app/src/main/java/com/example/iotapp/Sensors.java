@@ -58,6 +58,8 @@ public class Sensors extends AppCompatActivity {
         FirebaseUser user;
         ListenerRegistration lightlisten;
         Map<String, Object> collect;
+        int lightreading = 0;
+        int tempreading = 0;
 
 
     @Override
@@ -100,14 +102,14 @@ public class Sensors extends AppCompatActivity {
                 switch (Room) {
                     case "Thermostat":
                         desc.setText("Room Temperature");
-                        TempText.setText("- °C");
+                        TempText.setText(tempreading + " °C");
                         TempText.setTextSize(60);
                         sMgr.unregisterListener(lightlistenertext);
                         sMgr.registerListener(templistener, temp, SensorManager.SENSOR_DELAY_NORMAL);
                         break;
                     case "Lights":
                         desc.setText("Light Intensity");
-                        TempText.setText("- %");
+                        TempText.setText(lightreading + " %");
                         TempText.setTextSize(60);
                         sMgr.unregisterListener(templistener);
                         sMgr.registerListener(lightlistenertext, light, SensorManager.SENSOR_DELAY_NORMAL);
@@ -180,8 +182,8 @@ public class Sensors extends AppCompatActivity {
 
             @Override
             public void onSensorChanged(SensorEvent event) {
-                int i = Math.round(((event.values[0])/40000)*100);
-                TempText.setText(String.format("%s %%",i));
+                lightreading = Math.round(((event.values[0])/40000)*100);
+                TempText.setText(String.format("%s %%",lightreading));
             }
         };
 
@@ -193,7 +195,8 @@ public class Sensors extends AppCompatActivity {
 
             @Override
             public void onSensorChanged(SensorEvent event) {
-                TempText.setText(String.format("%s °C",Math.round(event.values[0])));
+                tempreading = Math.round(event.values[0]);
+                TempText.setText(String.format("%s °C",tempreading));
             }
         };
 

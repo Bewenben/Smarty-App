@@ -12,25 +12,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 
 public class MembersAdapter extends BaseAdapter {
 
-    private final ArrayList<String> Names;
-    private final ArrayList<String> Permissions;
-    private final ArrayList<String> Photos;
+    private final ArrayList<Object> FullUser;
     private final LayoutInflater layoutInflater;
 
-    public MembersAdapter(ArrayList<String> Names,ArrayList<String> Permissions,ArrayList<String> Photos, Context context) {
-        this.Names = Names;
-        this.Photos = Photos;
-        this.Permissions = Permissions;
+    public MembersAdapter(ArrayList<Object> FullUser, Context context) {
+        this.FullUser = FullUser;
         this.layoutInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return Names.size();
+        return FullUser.size();
     }
 
     @Override
@@ -51,14 +48,17 @@ public class MembersAdapter extends BaseAdapter {
         TextView textView = view.findViewById(R.id.namemember);
         TextView permission = view.findViewById(R.id.textView16);
         ImageView imageView = view.findViewById(R.id.profilemember);
-        permission.setText(Permissions.get(i));
-        textView.setText(Names.get(i));
+
+        Member mem = (Member) FullUser.get(i);
+
+        permission.setText(mem.getRole());
+        textView.setText(mem.getName());
 
         try{
-            if (Objects.equals(Photos.get(i), "none")) {
+            if (Objects.equals(mem.getPhoto(), "none")) {
                 imageView.setImageResource(R.drawable.user);
             } else {
-                Uri memberimg = Uri.parse(Photos.get(i));
+                Uri memberimg = Uri.parse(mem.getPhoto());
                 imageView.setImageURI(memberimg);
                 imageView.setPadding(0,0,0,0);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
